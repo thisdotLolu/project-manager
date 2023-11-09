@@ -4,12 +4,12 @@ import 'firebase/auth'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxSFbPBHu27ECJey56npIcwHTSHZGa9Jc",
-  authDomain: "thedojo-a49d8.firebaseapp.com",
-  projectId: "thedojo-a49d8",
-  storageBucket: "thedojo-a49d8.appspot.com",
-  messagingSenderId: "665535140000",
-  appId: "1:665535140000:web:62014ed10484c8bdd839c5"
+  apiKey: "AIzaSyCdK9sIkWCotVnuuLT_qw-e8E6G8bAGxRM",
+  authDomain: "project-mgt-site.firebaseapp.com",
+  projectId: "project-mgt-site",
+  storageBucket: "project-mgt-site.appspot.com",
+  messagingSenderId: "702193036549",
+  appId: "1:702193036549:web:def22ddb3cab6aab261b6c"
 };
 
 //init firebase
