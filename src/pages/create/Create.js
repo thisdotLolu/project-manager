@@ -4,6 +4,9 @@ import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useFirestore } from '../../hooks/useFirestore'
+import {useHistory} from 'react-router-dom'
+
 
 const categories = [
   { value: 'development', label: 'Development' },
@@ -13,6 +16,7 @@ const categories = [
 ]
 
 function Create() {
+  const history = useHistory()
   const [name, setName] = useState('')
   const [details, setDetails] = useState('')
   const [dueDate, setDueDate] = useState('')
@@ -20,8 +24,9 @@ function Create() {
   const [assignedUsers, setAssignedUsers] = useState([])
   const [formError, setFormError] = useState(null)
   const {user} = useAuthContext()
+  const {addDocument,response} = useFirestore('projects')
   
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
     e.preventDefault()
     setFormError(null)
     if(!category){
@@ -46,7 +51,7 @@ function Create() {
         id:u.value.id
       }
     })
-
+    
     const project = {
       name,
       details,
@@ -56,7 +61,10 @@ function Create() {
       createdBy,
       assignedUsersList
     }
-    console.log(name,details,details)
+    await addDocument(project)
+    if(!response.error){
+      history.push('/')
+    }
   }
 
   const {documents} = useCollection('users')
